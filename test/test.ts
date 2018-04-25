@@ -37,11 +37,6 @@ test('Trees contain the values', t => {
     t.truthy(intTree.contains(initInt))
 })
 
-test('Initial sizes should be 1', t => {
-    t.is(stringTree.size, 1)
-    t.is(intTree.size, 1)
-})
-
 test('Insert into trees', t => {
     const temp = 'temp'
     const twenty = 20
@@ -49,8 +44,6 @@ test('Insert into trees', t => {
     intTree.insert(twenty)
     t.truthy(stringTree.contains(temp))
     t.truthy(intTree.contains(twenty))
-    t.is(stringTree.size, 2)
-    t.is(intTree.size, 2)
 })
 
 test('Minimum values', t => {

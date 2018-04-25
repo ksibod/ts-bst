@@ -5,24 +5,20 @@ class BST<T> {
     value: T
     left: BST<T>
     right: BST<T>
-    size: number
 
     constructor(val?: T) {
         this.value = val ? val : null
         this.left = null
         this.right = null
-        this.size = val ? 1 : 0
     }
 
     insert(val: T): void {
         if (this.value == null) {
             this.value = val
-            this.size++
         }
         else if (val <= this.value) {
             if (!this.left) {
                 this.left = new BST<T>(val)
-                this.size++
             }
             else {
                 this.left.insert(val)
@@ -31,7 +27,6 @@ class BST<T> {
         else {
             if (!this.right) {
                 this.right = new BST<T>(val)
-                this.size++
             }
             else {
                 this.right.insert(val)

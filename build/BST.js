@@ -6,17 +6,14 @@ var BST = (function () {
         this.value = val ? val : null;
         this.left = null;
         this.right = null;
-        this.size = val ? 1 : 0;
     }
     BST.prototype.insert = function (val) {
         if (this.value == null) {
             this.value = val;
-            this.size++;
         }
         else if (val <= this.value) {
             if (!this.left) {
                 this.left = new BST(val);
-                this.size++;
             }
             else {
                 this.left.insert(val);
@@ -25,7 +22,6 @@ var BST = (function () {
         else {
             if (!this.right) {
                 this.right = new BST(val);
-                this.size++;
             }
             else {
                 this.right.insert(val);
