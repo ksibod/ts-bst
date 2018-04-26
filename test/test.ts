@@ -1,11 +1,14 @@
 import test from 'ava'
 import BST from '../src/BST'
+import perf from './perf'
 
 const initString: string = 'test'
 const initInt: number = 10
 
 let stringTree: BST<string>
 let intTree: BST<number>
+
+const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
 
 
 test('Create a new BST<String>', t => {
@@ -54,6 +57,21 @@ test('Minimum values', t => {
 test('Maximum values', t => {
     t.is(stringTree.maximum(), 'test')
     t.is(intTree.maximum(), 20)
+})
+
+
+test('Insert 100,000 elements into trees', t => {
+
+    perf(() => {
+        for (let i = 0; i < 100000; i++) {
+            const rand = random(1, 100000)
+            stringTree.insert(`num-${rand}`)
+            intTree.insert(rand)
+        }
+        t.truthy(stringTree.contains('test'))
+        t.truthy(intTree.contains(10000))
+    })
+
 })
 
 

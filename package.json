@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && ava-ts test/test.ts"
+    "test": "tsc && ava-ts test/test.ts --verbose"
   },
   "author": "Ashley Kyle Smith",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "^2.22.1"
+  },
   "devDependencies": {
     "ava": "^0.25.0",
     "ava-ts": "^0.24.4",
