@@ -1,21 +1,19 @@
 {
-  "name": "binary-search-tree",
+  "name": "ts-bst",
   "version": "1.0.0",
   "description": "A Binary Search Tree implementation using TypeScript generic classes.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && ava-ts test/test.ts --verbose"
+    "test": "ts-node test/test.ts",
+    "pub": "npm version patch && npm run build && npm publish"
   },
   "author": "Ashley Kyle Smith",
   "license": "MIT",
-  "dependencies": {
-    "moment": "^2.22.1"
-  },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "ava-ts": "^0.24.4",
-    "ts-node": "^6.0.0",
-    "typescript": "^2.8.3"
+    "ts-node": "^10.4.0",
+    "ts-simple-test": "^1.0.8",
+    "typescript": "^4.5.2"
   }
 }

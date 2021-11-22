@@ -1,19 +1,24 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+        "moduleResolution": "node",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "outDir": "./build",
+        "outDir": "dist",
         "sourceMap": true,
+        "esModuleInterop": true,
+        "lib": ["es2017", "es7", "es6", "dom"],
         "target": "es5",
+        "declaration": true
     },
     "compileOnSave": true,
     "include": [
-        "src/**/*"
+        "index.ts"
     ],
     "exclude": [
         "node_modules",
-        "**/*.spec.ts"
+        "**/*.spec.ts",
+        "dist"
     ]
 }

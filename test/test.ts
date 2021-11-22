@@ -1,77 +1,76 @@
-import test from 'ava'
-import BST from '../src/BST'
-import perf from './perf'
+import { describe, it, expect, time } from 'ts-simple-test';
+import { BST } from '../src/BST';
 
-const initString: string = 'test'
-const initInt: number = 10
+const initString: string = 'test';
+const initInt: number = 10;
 
-let stringTree: BST<string>
-let intTree: BST<number>
+let stringTree: BST<string>;
+let intTree: BST<number>;
 
-const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
-
-
-test('Create a new BST<String>', t => {
-    stringTree = new BST<string>()
-    stringTree.insert(initString)
-    t.pass()
-})
-
-test('Create a new BST<Number>', t => {
-    intTree = new BST<number>()
-    intTree.insert(initInt)
-    t.pass()
-})
-
-test('Left and right nodes are null', t => {
-    t.falsy(stringTree.left)
-    t.falsy(stringTree.right)
-    t.falsy(intTree.left)
-    t.falsy(intTree.right)
-})
-
-test('Initial values are equal', t => {
-    t.is(stringTree.value, initString)
-    t.is(intTree.value, initInt)
-})
-
-test('Trees contain the values', t => {
-    t.truthy(stringTree.contains(initString))
-    t.truthy(intTree.contains(initInt))
-})
-
-test('Insert into trees', t => {
-    const temp = 'temp'
-    const twenty = 20
-    stringTree.insert(temp)
-    intTree.insert(twenty)
-    t.truthy(stringTree.contains(temp))
-    t.truthy(intTree.contains(twenty))
-})
-
-test('Minimum values', t => {
-    t.is(stringTree.minimum(), 'temp')
-    t.is(intTree.minimum(), 10)
-})
-
-test('Maximum values', t => {
-    t.is(stringTree.maximum(), 'test')
-    t.is(intTree.maximum(), 20)
-})
+const random = (min: number, max: number) => 
+    Math.floor(Math.random() * (max - min + 1)) + min;
 
 
-test('Insert 100,000 elements into trees', t => {
+describe('BST Tests', () => {
+    it('Create a new BST<String> and insert a value', () => {
+        stringTree = new BST<string>();
+        stringTree.insert(initString);
+        expect(stringTree.value).toBeTruthy();
+    });
 
-    perf(() => {
-        for (let i = 0; i < 100000; i++) {
-            const rand = random(1, 100000)
-            stringTree.insert(`num-${rand}`)
-            intTree.insert(rand)
-        }
-        t.truthy(stringTree.contains('test'))
-        t.truthy(intTree.contains(10000))
-    })
+    it('Create a new BST<Number> and insert a value', () => {
+        intTree = new BST<number>();
+        intTree.insert(initInt);
+        expect(intTree.value).toBeTruthy();
+    });
 
-})
+    it('Left and right nodes are null', () => {
+        expect(stringTree.left).toBeFalsy();
+        expect(stringTree.right).toBeFalsy();
+        expect(intTree.left).toBeFalsy();
+        expect(intTree.right).toBeFalsy();
+    });
+
+    it('Initial values are equal', () => {
+        expect(stringTree.value).toBe(initString);
+        expect(intTree.value).toBe(initInt);
+    });
+
+    it('Trees contain the values', () => {
+        expect(stringTree.contains(initString)).toBeTruthy();
+        expect(intTree.contains(initInt)).toBeTruthy();
+    });
+
+    it('Insert into trees', () => {
+        const temp = 'temp';
+        const twenty = 20;
+        stringTree.insert(temp);
+        intTree.insert(twenty);
+        expect(stringTree.contains(temp)).toBeTruthy();
+        expect(intTree.contains(twenty)).toBeTruthy();
+    });
+
+    it('Minimum values', () => {
+        expect(stringTree.minimum()).toBe('temp');
+        expect(intTree.minimum()).toBe(10);
+    });
+
+    it('Maximum values', () => {
+        expect(stringTree.maximum()).toBe('test');
+        expect(intTree.maximum()).toBe(20);
+    });
+
+    it('Insert 100,000 elements into trees', () => {
+        time(() => {
+            for (let i = 0; i < 100000; i++) {
+                const rand = random(1, 100000);
+                stringTree.insert(`num-${rand}`);
+                intTree.insert(rand);
+            }
+            expect(stringTree.contains('test')).toBeTruthy();
+            expect(intTree.contains(20)).toBeTruthy();
+        });
+    });
+});
 
 
